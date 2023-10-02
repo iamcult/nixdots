@@ -16,7 +16,7 @@
          {
            home-manager.useGlobalPkgs = true;
            home-manager.useUserPackages = true;
-           home-manager.users.cult = import ./cult.nix;
+           home-manager.users.cult = import ./modules/cult.nix;
 
            # Optionally, use home-manager.extraSpecialArgs to pass
            # arguments to home.nix

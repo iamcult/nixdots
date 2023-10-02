@@ -6,7 +6,7 @@
     ];
 
   environment.etc = {
-    nixos.source = "/persist/etc/nixos";
+    # nixos.source = "/persist/etc/nixos";
     "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
     machine-id.source = "/persist/etc/machine-id";
   };

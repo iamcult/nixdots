@@ -3,9 +3,10 @@
 {
   filesystems = {
     "/".options = [ "subvol=root" "compress=zstd" ];
-    "/home".options = [ "subvol=root" "compress=zstd" ];
-    "/nix".options = [ "subvol=root" "compress=zstd" "noatime" ];
-    "/persist".options = [ "subvol=root" "compress=zstd" ];
-    "/var/log".options = [ "subvol=root" "compress=zstd" ];
+    "/home".options = [ "subvol=home" "compress=zstd" ];
+    "/nix".options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    "/persist".options = [ "subvol=persist" "compress=zstd" ];
+    "/etc/nixos".options = [ "subvol=nixosconfig" "compress=zstd" ];
+    "/var/log".options = [ "subvol=log" "compress=zstd" ];
   };
 }

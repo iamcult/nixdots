@@ -14,6 +14,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  zramSwap.enable = true;
+
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   
   hardware.bluetooth.enable = true;

@@ -1,3 +1,2 @@
 modules/secrets/
-flake.lock
 modules/hardware-configuration.nix

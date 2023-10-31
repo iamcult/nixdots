@@ -2,9 +2,14 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
@@ -12,15 +17,17 @@
       system = "x86_64-linux";
       modules = [
         ./snowball.nix
-         home-manager.nixosModules.home-manager
-         {
-           home-manager.useGlobalPkgs = true;
-           home-manager.useUserPackages = true;
-           home-manager.users.cult = import ./modules/cult.nix;
+      ];
+    };
+  };
+  outputs = {nixpkgs, home-manager, hyprland, ...}: {
+    homeConfigurations."cult@snowball" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
-           # Optionally, use home-manager.extraSpecialArgs to pass
-           # arguments to home.nix
-         }
+      modules = [
+        hyprland.homeManagerModules.default
+        {wayland.windowManager.hyprland.enable = true;}
+        ./modules/cult.nix
       ];
     };
   };
